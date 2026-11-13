@@ -107,6 +107,7 @@
   if (ls.get("mayor", false) || localStorage.getItem("nw18") === "1") irHash();
   // Ajustes
   $("abrirCfg").onclick = () => { $("cfgNombre").value = cfg.nombre; $("cfgKey").value = cfg.key; $("cfgPrueba").style.display = C.proxyUrl ? "none" : "block"; $("cfg").classList.add("activa"); };
+  $("abrirCfg2").onclick = () => $("abrirCfg").onclick();
   $("cerrarCfg").onclick = () => $("cfg").classList.remove("activa");
   $("guardarCfg").onclick = () => { cfg.nombre = $("cfgNombre").value.trim(); cfg.key = $("cfgKey").value.trim(); ls.set("cfg", cfg); $("cfg").classList.remove("activa"); };
   $("borrarTodo").onclick = () => { if (confirm("¿Borrar todos tus chats?")) { P.forEach(p => localStorage.removeItem("wb_chat_" + p.id)); $("cfg").classList.remove("activa"); } };
