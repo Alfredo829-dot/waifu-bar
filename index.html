@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12101c">
+<title>Waifu Bar</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="edad" class="pantalla activa">
+  <div class="caja">
+    <h1>Waifu Bar</h1>
+    <p>Personajes originales de estilo anime, hechos con IA. No son personas reales.</p>
+    <p><b>Solo para mayores de 18 años.</b></p>
+    <button id="soyMayor" class="btn">Tengo 18 años o más</button>
+    <button id="soyMenor" class="btn sec">Soy menor</button>
+  </div>
+</div>
+
+<div id="inicio" class="pantalla">
+  <header><h1>Waifu Bar</h1><button id="abrirCfg" class="icono" aria-label="Ajustes">⚙</button></header>
+  <p class="sub">Escoge con quién platicar. Todas son IA y se acuerdan de ti.</p>
+  <div id="lista"></div>
+  <p class="aviso">Personajes ficticios y adultos, generados con IA.</p>
+</div>
+
+<div id="chat" class="pantalla">
+  <header>
+    <button id="volver" class="icono" aria-label="Volver">‹</button>
+    <div id="chatAvatar" class="avatar chico"></div>
+    <div class="quien"><b id="chatNombre"></b><small id="chatTag"></small></div>
+    <span id="contador" class="contador"></span>
+  </header>
+  <div id="mensajes"></div>
+  <form id="formMsg">
+    <input id="txt" autocomplete="off" placeholder="Escríbele algo…" maxlength="500">
+    <button class="btn">Enviar</button>
+  </form>
+</div>
+
+<div id="pago" class="modal">
+  <div class="caja">
+    <h2>Se acabaron tus mensajes gratis</h2>
+    <p id="pagoTxt"></p>
+    <a id="pagoLink" class="btn" target="_blank" rel="noopener">Desbloquear</a>
+    <button id="cerrarPago" class="btn sec">Ahorita no</button>
+  </div>
+</div>
+
+<div id="cfg" class="modal">
+  <div class="caja">
+    <h2>Ajustes</h2>
+    <label>Tu nombre<input id="cfgNombre" maxlength="30"></label>
+    <div id="cfgPrueba">
+      <p class="mini">Modo prueba: pega tu clave gratis de Groq (console.groq.com). Se guarda solo en este celular.</p>
+      <label>Clave de Groq<input id="cfgKey" type="password" autocomplete="off"></label>
+    </div>
+    <button id="guardarCfg" class="btn">Guardar</button>
+    <button id="borrarTodo" class="btn sec">Borrar mis chats</button>
+    <button id="cerrarCfg" class="btn sec">Cerrar</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="personajes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
