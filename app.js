@@ -34,8 +34,20 @@
     c.append(f, t); c.onclick = () => abrir(p); $("lista").append(c);
   });
 
+  const PART = { feliz:"✨", risa:"😆", coqueta:"😉", timida:"👉👈", sonrojada:"😳", enojada:"💢", celosa:"😤", triste:"💧", sorprendida:"❗", pensativa:"💭", emocionada:"✨", aburrida:"💤", "cariñosa":"💕", retadora:"🔥", misteriosa:"🌙", nerviosa:"💦", orgullosa:"👑", juguetona:"🎵", seria:"", enamorada:"💗" };
+  function moverse(emo) {
+    const E = window.WB_EMOS; if (!E.includes(emo)) emo = E[Math.floor(Math.random() * E.length)];
+    const pj = $("pj"); pj.className = ""; void pj.offsetWidth; pj.className = "emo-" + emo;
+    const s = PART[emo]; if (!s) return;
+    for (let i = 0; i < 5; i++) { const e = document.createElement("span"); e.textContent = s;
+      e.style.left = (25 + Math.random() * 50) + "%"; e.style.animationDelay = (i * 0.18) + "s";
+      $("particulas").append(e); setTimeout(() => e.remove(), 2600); }
+  }
+  const limpiar = (t) => { const m = t.match(/\[emo:\s*([a-zñáéíóú]+)\s*\]/i); let emo = m ? m[1].toLowerCase().replace(/[áéíóú]/g, c => ({ "á":"a","é":"e","í":"i","ó":"o","ú":"u" })[c]) : ""; if (emo === "carinosa") emo = "cariñosa"; return { texto: t.replace(/\[emo:[^\]]*\]/gi, "").trim(), emo }; };
   function abrir(p) {
-    actual = p; pintarAvatar($("chatAvatar"), p);
+    actual = p;
+    $("pj").style.backgroundImage = `url(img/${p.id}.jpg)`; $("escena").style.setProperty("--neon", p.colores[0]);
+    setTimeout(() => moverse("feliz"), 300); pintarAvatar($("chatAvatar"), p);
     $("chatNombre").textContent = p.nombre; $("chatTag").textContent = p.tag + " · IA";
     const d = datos(p.id);
     if (!d.msgs.length) { d.msgs.push({ role: "assistant", content: p.saludo }); guardar(p.id, d); }
@@ -87,8 +99,8 @@
     d.msgs.push({ role: "user", content: t }); d.usados++; guardar(p.id, d); $("txt").value = ""; render();
     ocupado = true; sis(p.nombre + " está escribiendo…");
     try {
-      const r = await llamarIA(armar(p, d));
-      d.msgs.push({ role: "assistant", content: r }); d.msgs = d.msgs.slice(-60); guardar(p.id, d);
+      const crudo = await llamarIA(armar(p, d)); const { texto: r, emo } = limpiar(crudo);
+      d.msgs.push({ role: "assistant", content: r || "…" }); moverse(emo); d.msgs = d.msgs.slice(-60); guardar(p.id, d);
       if (d.usados % 8 === 0) actualizarResumen(p, d);
       render();
     } catch (e) { render(); sis(e.message); d.usados--; d.msgs.pop(); guardar(p.id, d); }
