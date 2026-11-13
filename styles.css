@@ -91,3 +91,8 @@ footer{text-align:center;font-size:.75rem;color:#8d86ab;padding:22px 18px 30px;b
 .emo-seria{animation-name:a-seria!important;animation-duration:2.4s!important}@keyframes a-seria{0%,100%{transform:translateX(-50%);filter:none}40%,80%{transform:translateX(-50%) scale(1.06);filter:saturate(.6) contrast(1.1)}}
 .emo-enamorada{animation-name:a-enamorada!important}@keyframes a-enamorada{0%,100%{transform:translateX(-50%);filter:none}15%,45%{transform:translateX(-50%) scale(1.07);filter:drop-shadow(0 0 30px #ff2d95)}30%,60%{transform:translateX(-50%) scale(1.01)}}
 #pj{transition:opacity .25s}
+.modal select,.modal input[type=number]{width:100%;padding:.7rem;border-radius:12px;border:1px solid #ffffff22;background:#0c0a14;color:#fff;font:inherit;margin-top:.3rem}
+.modal input[type=color]{width:100%;height:44px;border:none;background:none;margin-top:.3rem}
+.modal .caja{max-height:90vh;overflow:auto}
+.carta.nueva{--neon:#ff2d95;border-style:dashed}
+.carta.nueva .ini{font-size:3rem}

@@ -24,7 +24,7 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-txt">
-      <h1>Tres chicas.<br>Tres historias.<br><span>Una te está esperando.</span></h1>
+      <h1>Tres chicas.<br>O la que tú crees.<br><span>Una te está esperando.</span></h1>
       <a href="#lista" class="btn grande">Escoge a la tuya</a>
       <p class="chips"><span>Se acuerdan de ti</span><span>Responden al instante</span><span>Gratis para empezar</span></p>
     </div>
@@ -70,6 +70,23 @@
     <p id="pagoTxt"></p>
     <a id="pagoLink" class="btn" target="_blank" rel="noopener">Desbloquear</a>
     <button id="cerrarPago" class="btn sec">Ahorita no</button>
+  </div>
+</div>
+
+<div id="crear" class="modal">
+  <div class="caja">
+    <h2>Crea a la tuya</h2>
+    <p class="mini">Personaje ficticio y adulto. No subas fotos ni nombres de personas reales.</p>
+    <label>Nombre<input id="crNombre" maxlength="20"></label>
+    <label>Edad (25 a 45)<input id="crEdad" type="number" min="25" max="45" value="27"></label>
+    <label>Look<select id="crLook"></select></label>
+    <label>Color neón<input id="crColor" type="color" value="#ff2d95"></label>
+    <label>Personalidad<select id="crPers"></select></label>
+    <label>¿A qué se dedica?<input id="crTrabajo" maxlength="40" placeholder="DJ, enfermera, gamer…"></label>
+    <label>Sus gustos<input id="crGustos" maxlength="80" placeholder="motos, k-pop, tacos al pastor…"></label>
+    <p id="crError" class="mini" style="color:#ff6b8b"></p>
+    <button id="guardarCrear" class="btn">Crear y platicar</button>
+    <button id="cerrarCrear" class="btn sec">Cancelar</button>
   </div>
 </div>
 
