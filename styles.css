@@ -26,3 +26,35 @@ h1{background:linear-gradient(90deg,#ff7ab6,#9b8cff);-webkit-background-clip:tex
 .modal{display:none;position:fixed;inset:0;background:#000a;z-index:5}.modal.activa{display:flex}
 label{display:block;text-align:left;margin-top:10px;font-size:.9rem}label input{width:100%;margin-top:4px;padding:11px;border-radius:10px;border:1px solid #2c2745;background:#12101c;color:#fff;font-size:1rem}
 .mini{font-size:.8rem;color:#b9b2d6;text-align:left}
+/* v2 neón */
+body{font-family:Outfit,system-ui,sans-serif;background:#07060d}
+.logo{font-family:Bungee,sans-serif;font-size:1.25rem;flex:1;background:linear-gradient(90deg,#ff2d95,#22d3ee);-webkit-background-clip:text;color:transparent;text-shadow:0 0 18px #ff2d9555}
+.top{background:#07060dcc;backdrop-filter:blur(10px);border-bottom:1px solid #ff2d9533}
+.hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,#ff2d9566,transparent 45%),radial-gradient(circle at 80% 40%,#22d3ee55,transparent 45%),radial-gradient(circle at 50% 90%,#a855f766,transparent 50%),#07060d;background-size:cover;background-position:center;animation:pulso 8s ease-in-out infinite alternate}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,#07060d 95%)}
+@keyframes pulso{from{filter:hue-rotate(0)}to{filter:hue-rotate(25deg) brightness(1.15)}}
+.hero-txt{position:relative;padding:24px 20px 34px}
+.hero h1{font-family:Bungee,sans-serif;font-size:2rem;line-height:1.1;margin:0 0 18px;color:#fff;-webkit-text-fill-color:#fff;background:none;text-shadow:0 0 22px #ff2d95aa}
+.hero h1 span{color:#22d3ee;-webkit-text-fill-color:#22d3ee;text-shadow:0 0 22px #22d3eeaa}
+.btn{background:linear-gradient(90deg,#ff2d95,#a855f7);box-shadow:0 0 18px #ff2d9566;font-family:Outfit,sans-serif}
+.btn.grande{font-size:1.15rem;padding:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chips span{font-size:.78rem;border:1px solid #22d3ee66;color:#bff6ff;padding:5px 10px;border-radius:20px;background:#22d3ee14}
+#lista{display:grid;gap:18px;padding:18px;scroll-margin-top:60px}
+@media(min-width:760px){#lista{grid-template-columns:repeat(3,1fr)}}
+.carta{display:block;padding:0;overflow:hidden;background:#110e1d;border:1px solid var(--neon);box-shadow:0 0 22px color-mix(in srgb,var(--neon) 40%,transparent);border-radius:20px;transition:transform .2s}
+.carta:active{transform:scale(.98)}
+.foto{aspect-ratio:4/5;display:grid;place-items:center}
+.ini{font-family:Bungee,sans-serif;font-size:6rem;color:var(--neon);text-shadow:0 0 30px var(--neon)}
+.info{padding:14px 16px 18px}.info b{font-size:1.3rem}.info small{color:var(--neon);font-weight:600}.info p{font-style:italic;color:#e7e2ff}
+.info .btn{background:var(--neon);box-shadow:0 0 16px var(--neon);color:#07060d}
+.bloque{padding:10px 18px 18px}.bloque h2{font-family:Bungee,sans-serif;font-size:1.15rem;color:#22d3ee;text-shadow:0 0 14px #22d3ee88}
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.pasos div{background:#110e1d;border-radius:14px;padding:12px 6px;border:1px solid #ff2d9533}.pasos b{font-family:Bungee,sans-serif;font-size:1.6rem;color:#ff2d95}.pasos p{margin:4px 0 0;font-size:.85rem}
+.extras{display:grid;gap:10px}.extras div{background:#110e1d;border-radius:14px;padding:14px;border:1px solid #a855f744;font-size:1.3rem}.extras b{display:block;font-size:1rem;margin-top:4px}.extras p{margin:2px 0 0;font-size:.85rem;color:#b9b2d6}
+footer{text-align:center;font-size:.75rem;color:#8d86ab;padding:22px 18px 30px;border-top:1px solid #ffffff12;margin-top:10px}
+#chat header{background:#110e1d;border-bottom:1px solid #ff2d9533}
+.m.ella{background:#1b1630;border:1px solid #ffffff10}
+.m.yo{background:linear-gradient(90deg,#ff2d95,#a855f7)}
+#formMsg{background:#110e1d}
+.caja{background:#110e1d;border:1px solid #ff2d9544;box-shadow:0 0 30px #ff2d9533}

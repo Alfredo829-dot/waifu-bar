@@ -4,25 +4,49 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#12101c">
-<title>Waifu Bar</title>
+<title>Neón Waifus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="edad" class="pantalla activa">
   <div class="caja">
-    <h1>Waifu Bar</h1>
+    <h1 class="logo">Neón Waifus</h1>
     <p>Personajes originales de estilo anime, hechos con IA. No son personas reales.</p>
     <p><b>Solo para mayores de 18 años.</b></p>
-    <button id="soyMayor" class="btn">Tengo 18 años o más</button>
-    <button id="soyMenor" class="btn sec">Soy menor</button>
+    <button id="soyMayor" class="btn">Sí, entrar</button>
+    <button id="soyMenor" class="btn sec">No, salir</button>
   </div>
 </div>
 
 <div id="inicio" class="pantalla">
-  <header><h1>Waifu Bar</h1><button id="abrirCfg" class="icono" aria-label="Ajustes">⚙</button></header>
-  <p class="sub">Escoge con quién platicar. Todas son IA y se acuerdan de ti.</p>
+  <header class="top"><span class="logo">Neón Waifus</span><button id="abrirCfg" class="icono" aria-label="Ajustes">⚙</button></header>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-txt">
+      <h1>Tres chicas.<br>Tres historias.<br><span>Una te está esperando.</span></h1>
+      <a href="#lista" class="btn grande">Escoge a la tuya</a>
+      <p class="chips"><span>Se acuerdan de ti</span><span>Responden al instante</span><span>Gratis para empezar</span></p>
+    </div>
+  </section>
   <div id="lista"></div>
-  <p class="aviso">Personajes ficticios y adultos, generados con IA.</p>
+  <section class="bloque">
+    <h2>Cómo funciona</h2>
+    <div class="pasos">
+      <div><b>1</b><p>Escoge a una</p></div>
+      <div><b>2</b><p>Platica gratis</p></div>
+      <div><b>3</b><p>Desbloquea su historia</p></div>
+    </div>
+  </section>
+  <section class="bloque">
+    <h2>Lo que puedes desbloquear</h2>
+    <div class="extras">
+      <div>📖<b>Capítulos de su historia</b><p>Cada una tiene su ruta y su secreto.</p></div>
+      <div>🎧<b>Audios con tu nombre</b><p>Su voz, diciéndote a ti.</p></div>
+      <div>☀️<b>Que te escriba cada mañana</b><p>Tu buenos días, sin que se lo pidas.</p></div>
+    </div>
+  </section>
+  <footer>Personajes ficticios creados con IA. Todas son adultas. Solo mayores de 18.<br>Tus chats se guardan solo en tu celular.</footer>
 </div>
 
 <div id="chat" class="pantalla">

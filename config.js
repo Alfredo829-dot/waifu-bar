@@ -1,6 +1,6 @@
 // Ajustes de Alfredo. Cambia solo esto.
 window.WB_CONFIG = {
-  nombre: "Waifu Bar",
+  nombre: "Neón Waifus",
   mensajesGratis: 20,                 // mensajes gratis por personaje
   linkPago: "",                       // tu link de Mercado Pago (vacío = botón de contacto)
   contactoWhatsApp: "525656586215",   // a dónde escriben para pagar

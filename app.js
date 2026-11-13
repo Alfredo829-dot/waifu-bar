@@ -16,6 +16,8 @@
   const datos = (id) => ls.get("chat_" + id, { msgs: [], resumen: "", usados: 0 });
   const guardar = (id, d) => ls.set("chat_" + id, d);
 
+  // Portada
+  { const pi = new Image(); pi.onload = () => { document.querySelector(".hero-bg").style.backgroundImage = "url(img/portada.png)"; }; pi.src = "img/portada.png"; }
   // Edad
   if (ls.get("mayor", false)) ver("inicio");
   $("soyMayor").onclick = () => { ls.set("mayor", true); ver("inicio"); };
@@ -23,12 +25,13 @@
 
   // Lista
   P.forEach(p => {
-    const c = document.createElement("div"); c.className = "carta";
-    const a = document.createElement("div"); a.className = "avatar"; pintarAvatar(a, p);
-    c.append(a);
-    const t = document.createElement("div");
-    t.innerHTML = `<b>${p.nombre}, ${p.edad}</b><small>${p.tag}</small><p>${p.saludo}</p>`;
-    c.append(t); c.onclick = () => abrir(p); $("lista").append(c);
+    const c = document.createElement("div"); c.className = "carta"; c.style.setProperty("--neon", p.colores[0]);
+    const f = document.createElement("div"); f.className = "foto"; f.style.background = `radial-gradient(circle at 50% 30%,${p.colores[0]}55,${p.colores[1]} 70%)`;
+    f.innerHTML = `<span class="ini">${p.nombre[0]}</span>`;
+    const img = new Image(); img.onload = () => { f.style.background = `url(img/${p.id}.png) center/cover`; f.innerHTML = ""; }; img.src = `img/${p.id}.png`;
+    const t = document.createElement("div"); t.className = "info";
+    t.innerHTML = `<b>${p.nombre}, ${p.edad}</b><small>${p.tag}</small><p>“${p.frase}”</p><button class="btn">Platica con ella</button>`;
+    c.append(f, t); c.onclick = () => abrir(p); $("lista").append(c);
   });
 
   function abrir(p) {
@@ -94,7 +97,7 @@
 
   function mostrarPago() {
     $("pagoTxt").textContent = `Para seguir platicando con ${actual.nombre}, desbloquea más mensajes.`;
-    $("pagoLink").href = C.linkPago || `https://wa.me/${C.contactoWhatsApp}?text=${encodeURIComponent("Quiero desbloquear a " + actual.nombre + " en Waifu Bar")}`;
+    $("pagoLink").href = C.linkPago || `https://wa.me/${C.contactoWhatsApp}?text=${encodeURIComponent("Quiero desbloquear a " + actual.nombre + " en Neón Waifus")}`;
     $("pago").classList.add("activa");
   }
   $("cerrarPago").onclick = () => $("pago").classList.remove("activa");
