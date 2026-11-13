@@ -90,3 +90,4 @@ footer{text-align:center;font-size:.75rem;color:#8d86ab;padding:22px 18px 30px;b
 .emo-juguetona{animation-name:a-juguetona!important}@keyframes a-juguetona{0%,100%{transform:translateX(-50%)}20%{transform:translateX(-50%) rotate(6deg)}40%{transform:translateX(-50%) rotate(-6deg)}60%{transform:translateX(-50%) rotate(4deg)}80%{transform:translateX(-50%) rotate(-3deg)}}
 .emo-seria{animation-name:a-seria!important;animation-duration:2.4s!important}@keyframes a-seria{0%,100%{transform:translateX(-50%);filter:none}40%,80%{transform:translateX(-50%) scale(1.06);filter:saturate(.6) contrast(1.1)}}
 .emo-enamorada{animation-name:a-enamorada!important}@keyframes a-enamorada{0%,100%{transform:translateX(-50%);filter:none}15%,45%{transform:translateX(-50%) scale(1.07);filter:drop-shadow(0 0 30px #ff2d95)}30%,60%{transform:translateX(-50%) scale(1.01)}}
+#pj{transition:opacity .25s}

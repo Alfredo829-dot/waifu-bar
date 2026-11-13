@@ -38,6 +38,9 @@
   function moverse(emo) {
     const E = window.WB_EMOS; if (!E.includes(emo)) emo = E[Math.floor(Math.random() * E.length)];
     const pj = $("pj"); pj.className = ""; void pj.offsetWidth; pj.className = "emo-" + emo;
+    const ruta = `img/${actual.id}/moods/${emo}.jpg`, base = `url(img/${actual.id}.jpg)`;
+    const im = new Image(); im.onload = () => { pj.style.opacity = 0; setTimeout(() => { pj.style.backgroundImage = `url(${ruta})`; pj.style.opacity = ""; }, 250); };
+    im.onerror = () => { pj.style.backgroundImage = base; }; im.src = ruta;
     const s = PART[emo]; if (!s) return;
     for (let i = 0; i < 5; i++) { const e = document.createElement("span"); e.textContent = s;
       e.style.left = (25 + Math.random() * 50) + "%"; e.style.animationDelay = (i * 0.18) + "s";
