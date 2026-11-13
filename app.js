@@ -10,17 +10,17 @@
   const pintarAvatar = (el, p) => {
     el.style.background = `linear-gradient(135deg,${p.colores[0]},${p.colores[1]})`;
     el.textContent = p.nombre[0];
-    const img = new Image(); img.onload = () => { el.style.background = `url(img/${p.id}.png) center/cover`; el.textContent = ""; };
-    img.src = `img/${p.id}.png`;
+    const img = new Image(); img.onload = () => { el.style.background = `url(img/${p.id}.jpg) center/cover`; el.textContent = ""; };
+    img.src = `img/${p.id}.jpg`;
   };
   const datos = (id) => ls.get("chat_" + id, { msgs: [], resumen: "", usados: 0 });
   const guardar = (id, d) => ls.set("chat_" + id, d);
 
   // Portada
-  { const pi = new Image(); pi.onload = () => { document.querySelector(".hero-bg").style.backgroundImage = "url(img/portada.png)"; }; pi.src = "img/portada.png"; }
+  { const pi = new Image(); pi.onload = () => { document.querySelector(".hero-bg").style.backgroundImage = "url(img/hero.jpg)"; }; pi.src = "img/hero.jpg"; }
   // Edad
-  if (ls.get("mayor", false)) ver("inicio");
-  $("soyMayor").onclick = () => { ls.set("mayor", true); ver("inicio"); };
+  if (ls.get("mayor", false) || localStorage.getItem("nw18") === "1") ver("inicio");
+  $("soyMayor").onclick = () => { ls.set("mayor", true); localStorage.setItem("nw18", "1"); irHash(); };
   $("soyMenor").onclick = () => { document.body.innerHTML = '<div class="caja" style="margin-top:30vh">Esta página es solo para mayores de 18 años.</div>'; };
 
   // Lista
@@ -28,7 +28,7 @@
     const c = document.createElement("div"); c.className = "carta"; c.style.setProperty("--neon", p.colores[0]);
     const f = document.createElement("div"); f.className = "foto"; f.style.background = `radial-gradient(circle at 50% 30%,${p.colores[0]}55,${p.colores[1]} 70%)`;
     f.innerHTML = `<span class="ini">${p.nombre[0]}</span>`;
-    const img = new Image(); img.onload = () => { f.style.background = `url(img/${p.id}.png) center/cover`; f.innerHTML = ""; }; img.src = `img/${p.id}.png`;
+    const img = new Image(); img.onload = () => { f.style.background = `url(img/${p.id}.jpg) center/cover`; f.innerHTML = ""; }; img.src = `img/${p.id}.jpg`;
     const t = document.createElement("div"); t.className = "info";
     t.innerHTML = `<b>${p.nombre}, ${p.edad}</b><small>${p.tag}</small><p>“${p.frase}”</p><button class="btn">Platica con ella</button>`;
     c.append(f, t); c.onclick = () => abrir(p); $("lista").append(c);
@@ -101,8 +101,10 @@
     $("pago").classList.add("activa");
   }
   $("cerrarPago").onclick = () => $("pago").classList.remove("activa");
-  $("volver").onclick = () => ver("inicio");
+  $("volver").onclick = () => { location.href = "index.html#chicas"; };
 
+  function irHash() { const p = P.find(x => x.id === location.hash.slice(1)); if (p) abrir(p); else ver("inicio"); }
+  if (ls.get("mayor", false) || localStorage.getItem("nw18") === "1") irHash();
   // Ajustes
   $("abrirCfg").onclick = () => { $("cfgNombre").value = cfg.nombre; $("cfgKey").value = cfg.key; $("cfgPrueba").style.display = C.proxyUrl ? "none" : "block"; $("cfg").classList.add("activa"); };
   $("cerrarCfg").onclick = () => $("cfg").classList.remove("activa");

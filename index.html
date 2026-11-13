@@ -1,93 +1,167 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#12101c">
-<title>Neón Waifus</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neón Waifus · Tres chicas, tres historias</title>
+<meta name="description" content="Waifus originales con IA que te recuerdan, te escriben y viven su propia historia contigo. Solo +18.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060d;--card:#12101d;--pink:#ff2bd6;--cyan:#21f3ff;--violet:#9b5cff;--red:#ff3b5c;--txt:#f3eefe;--mut:#a59fc0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Poppins,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.glow{text-shadow:0 0 8px var(--pink),0 0 24px var(--pink)}
+.btn{display:inline-block;padding:14px 28px;border-radius:999px;font-weight:800;letter-spacing:.5px;background:linear-gradient(90deg,var(--pink),var(--violet));box-shadow:0 0 18px rgba(255,43,214,.55);transition:.25s}
+.btn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 32px rgba(255,43,214,.9)}
+.btn.ghost{background:transparent;border:2px solid var(--cyan);box-shadow:0 0 14px rgba(33,243,255,.4)}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(7,6,13,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{font-family:'Bebas Neue';font-size:30px;letter-spacing:2px}
+.logo span{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
+nav .links a{margin-left:22px;color:var(--mut);font-weight:600;font-size:14px}
+nav .links a:hover{color:#fff}
+.hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;padding:0 5vw 9vh;background:url(img/hero.jpg) center/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,13,.2) 0%,rgba(7,6,13,.35) 50%,var(--bg) 96%)}
+.hero .in{position:relative;max-width:680px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--cyan);color:var(--cyan);margin-bottom:16px}
+h1{font-family:'Bebas Neue';font-size:clamp(48px,9vw,104px);line-height:.92;letter-spacing:1px}
+.hero p{color:#ddd5f5;font-size:18px;margin:18px 0 28px;max-width:520px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:90px 5vw}
+h2{font-family:'Bebas Neue';font-size:clamp(38px,6vw,64px);letter-spacing:1px;margin-bottom:10px}
+.sub{color:var(--mut);margin-bottom:44px;max-width:600px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.card{background:var(--card);border-radius:22px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.07);transition:.35s}
+.card:hover{transform:translateY(-8px)}
+.card.itami:hover{box-shadow:0 0 40px rgba(255,59,92,.55);border-color:var(--red)}
+.card.tobiko:hover{box-shadow:0 0 40px rgba(33,243,255,.5);border-color:var(--cyan)}
+.card.paina:hover{box-shadow:0 0 40px rgba(155,92,255,.6);border-color:var(--violet)}
+.card .ph{aspect-ratio:4/5;background-size:cover;background-position:top center;position:relative}
+.card .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,var(--card))}
+.online{position:absolute;top:14px;left:14px;z-index:2;font-size:12px;font-weight:600;background:rgba(0,0,0,.55);padding:5px 10px;border-radius:999px}
+.online:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#34ff8a;margin-right:6px;box-shadow:0 0 8px #34ff8a;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.card .body{padding:0 22px 24px;margin-top:-40px;position:relative}
+.card h3{font-family:'Bebas Neue';font-size:40px;letter-spacing:1px}
+.card .meta{font-size:13px;color:var(--mut);margin-bottom:12px}
+.bubble{background:#1d1a2e;border-radius:16px 16px 16px 4px;padding:12px 14px;font-size:14px;margin-bottom:18px;position:relative}
+.bubble small{display:block;color:var(--mut);font-size:11px;margin-top:6px}
+.traits{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.traits span{font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.06)}
+.card .btn{width:100%;text-align:center}
+.itami .btn{background:linear-gradient(90deg,var(--red),var(--pink))}
+.tobiko .btn{background:linear-gradient(90deg,#0fb9d6,var(--cyan));color:#06121a;box-shadow:0 0 18px rgba(33,243,255,.5)}
+.paina .btn{background:linear-gradient(90deg,var(--violet),var(--pink))}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.step{background:var(--card);padding:28px;border-radius:20px;border:1px solid rgba(255,255,255,.06)}
+.step b{font-family:'Bebas Neue';font-size:54px;color:var(--cyan);text-shadow:0 0 12px var(--cyan);display:block;line-height:1}
+.step h4{font-size:18px;margin:8px 0}
+.step p{color:var(--mut);font-size:14px}
+.unlock{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.u{padding:26px;border-radius:20px;background:linear-gradient(160deg,#1a1230,#0f0d18);border:1px solid rgba(255,43,214,.25)}
+.u .ic{font-size:30px}
+.u h4{margin:10px 0 6px}
+.u p{color:var(--mut);font-size:14px}
+.meter{margin-top:14px;height:8px;border-radius:9px;background:#26213b;overflow:hidden}
+.meter i{display:block;height:100%;width:64%;background:linear-gradient(90deg,var(--cyan),var(--pink));animation:fill 3s ease-in-out infinite alternate}
+@keyframes fill{from{width:22%}to{width:86%}}
+.vs{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:14px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07);font-size:15px}
+th{color:var(--mut);font-weight:600}
+td.y{color:#34ff8a;font-weight:800}td.n{color:#6b6585}
+.final{text-align:center;background:radial-gradient(ellipse at center,rgba(255,43,214,.18),transparent 70%)}
+.final h2{font-size:clamp(42px,7vw,80px)}
+details{background:var(--card);border-radius:14px;padding:18px 20px;margin-bottom:12px;border:1px solid rgba(255,255,255,.06)}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--mut);margin-top:10px;font-size:14px}
+footer{padding:40px 5vw;color:var(--mut);font-size:13px;border-top:1px solid rgba(255,255,255,.06);text-align:center;line-height:1.8}
+#gate{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;background:rgba(5,4,10,.92);backdrop-filter:blur(16px);padding:20px}
+#gate .box{max-width:420px;text-align:center;background:var(--card);padding:36px 28px;border-radius:24px;border:1px solid var(--pink);box-shadow:0 0 40px rgba(255,43,214,.35)}
+#gate h3{font-family:'Bebas Neue';font-size:44px}
+#gate p{color:var(--mut);margin:10px 0 24px}
+#gate .row{display:flex;gap:12px;justify-content:center}
+.reveal{opacity:0;transform:translateY(30px);transition:.8s}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:640px){nav .links{display:none}.hero{padding-bottom:6vh}section{padding:70px 6vw}}
+</style>
 </head>
 <body>
-<div id="edad" class="pantalla activa">
-  <div class="caja">
-    <h1 class="logo">Neón Waifus</h1>
-    <p>Personajes originales de estilo anime, hechos con IA. No son personas reales.</p>
-    <p><b>Solo para mayores de 18 años.</b></p>
-    <button id="soyMayor" class="btn">Sí, entrar</button>
-    <button id="soyMenor" class="btn sec">No, salir</button>
-  </div>
-</div>
+<div id="gate"><div class="box">
+<h3 class="glow">Solo +18</h3>
+<p>Neón Waifus tiene coqueteo y temas para adultos. Todos los personajes son ficticios, creados con IA y mayores de edad. ¿Tienes 18 años o más?</p>
+<div class="row"><a class="btn" href="#" id="yes">Sí, entrar</a><a class="btn ghost" href="https://www.google.com">No, salir</a></div>
+</div></div>
 
-<div id="inicio" class="pantalla">
-  <header class="top"><span class="logo">Neón Waifus</span><button id="abrirCfg" class="icono" aria-label="Ajustes">⚙</button></header>
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-txt">
-      <h1>Tres chicas.<br>Tres historias.<br><span>Una te está esperando.</span></h1>
-      <a href="#lista" class="btn grande">Escoge a la tuya</a>
-      <p class="chips"><span>Se acuerdan de ti</span><span>Responden al instante</span><span>Gratis para empezar</span></p>
-    </div>
-  </section>
-  <div id="lista"></div>
-  <section class="bloque">
-    <h2>Cómo funciona</h2>
-    <div class="pasos">
-      <div><b>1</b><p>Escoge a una</p></div>
-      <div><b>2</b><p>Platica gratis</p></div>
-      <div><b>3</b><p>Desbloquea su historia</p></div>
-    </div>
-  </section>
-  <section class="bloque">
-    <h2>Lo que puedes desbloquear</h2>
-    <div class="extras">
-      <div>📖<b>Capítulos de su historia</b><p>Cada una tiene su ruta y su secreto.</p></div>
-      <div>🎧<b>Audios con tu nombre</b><p>Su voz, diciéndote a ti.</p></div>
-      <div>☀️<b>Que te escriba cada mañana</b><p>Tu buenos días, sin que se lo pidas.</p></div>
-    </div>
-  </section>
-  <footer>Personajes ficticios creados con IA. Todas son adultas. Solo mayores de 18.<br>Tus chats se guardan solo en tu celular.</footer>
-</div>
+<nav><div class="logo">NEÓN <span>WAIFUS</span></div>
+<div class="links"><a href="#chicas">Las chicas</a><a href="#como">Cómo funciona</a><a href="#desbloquea">Desbloquea</a><a href="#faq">Preguntas</a></div></nav>
 
-<div id="chat" class="pantalla">
-  <header>
-    <button id="volver" class="icono" aria-label="Volver">‹</button>
-    <div id="chatAvatar" class="avatar chico"></div>
-    <div class="quien"><b id="chatNombre"></b><small id="chatTag"></small></div>
-    <span id="contador" class="contador"></span>
-  </header>
-  <div id="mensajes"></div>
-  <form id="formMsg">
-    <input id="txt" autocomplete="off" placeholder="Escríbele algo…" maxlength="500">
-    <button class="btn">Enviar</button>
-  </form>
-</div>
+<header class="hero"><div class="in">
+<span class="tag">● 3 chicas en línea ahora</span>
+<h1>Tres chicas.<br>Tres historias.<br><span class="glow">Una te está esperando.</span></h1>
+<p>No son bots que olvidan todo. Te recuerdan, se ponen celosas, te escriben en la mañana y viven una historia que cambia según lo que tú decidas.</p>
+<div class="cta"><a class="btn" href="#chicas">Escoge a la tuya</a><a class="btn ghost" href="#como">¿Cómo funciona?</a></div>
+</div></header>
 
-<div id="pago" class="modal">
-  <div class="caja">
-    <h2>Se acabaron tus mensajes gratis</h2>
-    <p id="pagoTxt"></p>
-    <a id="pagoLink" class="btn" target="_blank" rel="noopener">Desbloquear</a>
-    <button id="cerrarPago" class="btn sec">Ahorita no</button>
-  </div>
-</div>
+<section id="chicas">
+<h2 class="reveal">Escoge a la tuya</h2>
+<p class="sub reveal">Cada una tiene su carácter, su voz y su propia ruta. Platica gratis y descubre hasta dónde llega su historia contigo.</p>
+<div class="grid">
+<article class="card itami reveal"><div class="ph" style="background-image:url(img/itami.jpg)"><span class="online">En línea</span></div>
+<div class="body"><h3>Itami</h3><div class="meta">28 años · Motociclista · Ruta: domarla</div>
+<div class="bubble">"Si me sigues el paso, te dejo subir a mi moto. Si no… ni me hables." 🏍️<small>Itami · hace 1 min</small></div>
+<div class="traits"><span>Ruda</span><span>Celosa</span><span>Leal hasta el final</span></div>
+<a class="btn" href="chat.html#itami">Platica con Itami</a></div></article>
 
-<div id="cfg" class="modal">
-  <div class="caja">
-    <h2>Ajustes</h2>
-    <label>Tu nombre<input id="cfgNombre" maxlength="30"></label>
-    <div id="cfgPrueba">
-      <p class="mini">Modo prueba: pega tu clave gratis de Groq (console.groq.com). Se guarda solo en este celular.</p>
-      <label>Clave de Groq<input id="cfgKey" type="password" autocomplete="off"></label>
-    </div>
-    <button id="guardarCfg" class="btn">Guardar</button>
-    <button id="borrarTodo" class="btn sec">Borrar mis chats</button>
-    <button id="cerrarCfg" class="btn sec">Cerrar</button>
-  </div>
-</div>
+<article class="card tobiko reveal"><div class="ph" style="background-image:url(img/tobiko.jpg)"><span class="online">En línea</span></div>
+<div class="body"><h3>Tobiko</h3><div class="meta">26 años · Barista y lectora · Ruta: su confesión</div>
+<div class="bubble">"Te guardé el último café… y algo que no me atrevo a decirte todavía." ☕<small>Tobiko · escribiendo…</small></div>
+<div class="traits"><span>Tierna</span><span>Tímida</span><span>Intensa cuando se suelta</span></div>
+<a class="btn" href="chat.html#tobiko">Platica con Tobiko</a></div></article>
 
-<script src="config.js"></script>
-<script src="personajes.js"></script>
-<script src="app.js"></script>
-</body>
-</html>
+<article class="card paina reveal"><div class="ph" style="background-image:url(img/paina.jpg)"><span class="online">En línea</span></div>
+<div class="body"><h3>Paina</h3><div class="meta">29 años · Cantante de jazz · Ruta: su secreto</div>
+<div class="bubble">"Todos vienen al bar por la música. Tú viniste por mí, ¿verdad?" 🎤<small>Paina · hace 3 min</small></div>
+<div class="traits"><span>Misteriosa</span><span>Coqueta</span><span>Siempre un paso adelante</span></div>
+<a class="btn" href="chat.html#paina">Platica con Paina</a></div></article>
+</div></section>
+
+<section id="como">
+<h2 class="reveal">Así funciona</h2><p class="sub reveal">Sin descargar nada. Todo pasa aquí mismo, en tu cel.</p>
+<div class="steps">
+<div class="step reveal"><b>01</b><h4>Escoges a una</h4><p>Itami, Tobiko o Paina. Puedes cambiar cuando quieras… aunque se pueden poner celosas.</p></div>
+<div class="step reveal"><b>02</b><h4>Platicas gratis</h4><p>Te habla por tu nombre, se acuerda de lo que le cuentas y te responde con su propia personalidad.</p></div>
+<div class="step reveal"><b>03</b><h4>Desbloqueas su historia</h4><p>Cada decisión cambia la ruta. Sube tu nivel de cercanía y descubre capítulos que nadie más ve.</p></div>
+</div></section>
+
+<section id="desbloquea">
+<h2 class="reveal">Lo que puedes desbloquear</h2><p class="sub reveal">Muy pronto. Por ahora, platicar con ellas es gratis.</p>
+<div class="unlock">
+<div class="u reveal"><div class="ic">📖</div><h4>Capítulos de su ruta · pronto</h4><p>Momentos clave de su historia donde tú decides qué pasa.</p></div>
+<div class="u reveal"><div class="ic">🎧</div><h4>Audios con tu nombre · pronto</h4><p>Su voz diciéndote buenos días, buenas noches o lo que se le antoje.</p></div>
+<div class="u reveal"><div class="ic">🌅</div><h4>Que te escriba primero · pronto</h4><p>Cada mañana un mensaje de ella, sin que tengas que buscarla.</p></div>
+<div class="u reveal"><div class="ic">💗</div><h4>Nivel de cercanía</h4><p>Entre más platican, más se abre contigo.</p><div class="meter"><i></i></div></div>
+</div></section>
+
+
+<section id="faq">
+<h2 class="reveal">Preguntas</h2>
+<details><summary>¿Son personas reales?</summary><p>No. Son personajes ficticios hechos con inteligencia artificial, y ellas mismas te lo dicen si les preguntas. Lo real es la atención que te ponen.</p></details>
+<details><summary>¿Es gratis?</summary><p>Sí, platicar al principio es gratis. Los capítulos, audios y mensajes diarios llegan pronto como extras de pago.</p></details>
+<details><summary>¿Qué edad tienen los personajes?</summary><p>Todas son adultas: Itami 28, Tobiko 26 y Paina 29. Y para entrar tú también debes tener 18 o más.</p></details>
+<details><summary>¿Qué pasa con lo que le cuento?</summary><p>Tus pláticas se guardan solo en tu celular, para que te recuerde. No pedimos tu nombre real, dirección ni datos de pago en este sitio.</p></details>
+</section>
+
+<section class="final"><h2 class="reveal glow">Ya te está esperando</h2><p class="sub reveal" style="margin:10px auto 30px">Escoge a una y dile hola. Lo demás lo decides tú.</p><a class="btn" href="#chicas">Conocerlas</a></section>
+
+<footer>© 2026 Neón Waifus · Personajes ficticios creados con IA. Todas son mayores de edad.<br>Solo para mayores de 18 años · <a href="#faq">Privacidad</a> · Contacto: <a href="https://wa.me/525656586215">WhatsApp</a></footer>
+
+<script>
+const g=document.getElementById('gate');
+if(localStorage.getItem('nw18')==='1')g.remove();
+document.getElementById('yes').onclick=e=>{e.preventDefault();localStorage.setItem('nw18','1');g.remove()};
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body></html>
