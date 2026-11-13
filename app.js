@@ -42,7 +42,7 @@
   function moverse(emo) {
     const E = window.WB_EMOS; if (emo !== "saludo" && !E.includes(emo)) emo = E[Math.floor(Math.random() * E.length)];
     const pj = $("pj"); pj.className = ""; void pj.offsetWidth; pj.className = "emo-" + emo;
-    const lista = [...new Set([emo, FOTO[emo], CINCO[emo] === "sonrisa" ? "feliz" : CINCO[emo], CINCO[emo]].filter(Boolean))].map(f => `img/${actual.id}/moods/${f}.jpg`);
+    const lista = [...new Set([emo, FOTO[emo], CINCO[emo] === "sonrisa" ? "feliz" : CINCO[emo], CINCO[emo]].filter(Boolean))].map(f => encodeURI(`img/${actual.id}/moods/${f}.jpg`));
     const probar = (k) => { if (k >= lista.length) { pj.style.backgroundImage = `url(img/${actual.id}.jpg)`; return; }
       const im = new Image(); im.onload = () => { pj.style.opacity = 0; setTimeout(() => { pj.style.backgroundImage = `url(${lista[k]})`; pj.style.opacity = ""; }, 250); };
       im.onerror = () => probar(k + 1); im.src = lista[k]; };
@@ -56,7 +56,7 @@
   function abrir(p) {
     actual = p;
     $("pj").style.backgroundImage = `url(img/${p.id}.jpg)`; $("escena").style.setProperty("--neon", p.colores[0]);
-    new Set([...window.WB_EMOS, ...Object.values(FOTO)]).forEach(f => { const i = new Image(); i.onerror = () => {}; i.src = `img/${p.id}/moods/${f}.jpg`; });
+    new Set([...window.WB_EMOS, ...Object.values(FOTO)]).forEach(f => { const i = new Image(); i.onerror = () => {}; i.src = encodeURI(`img/${p.id}/moods/${f}.jpg`); });
     setTimeout(() => moverse("saludo"), 300); pintarAvatar($("chatAvatar"), p);
     $("chatNombre").textContent = p.nombre; $("chatTag").textContent = p.tag + " · IA";
     const d = datos(p.id);
