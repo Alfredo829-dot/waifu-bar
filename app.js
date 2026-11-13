@@ -35,12 +35,18 @@
   });
 
   const PART = { feliz:"✨", risa:"😆", coqueta:"😉", timida:"👉👈", sonrojada:"😳", enojada:"💢", celosa:"😤", triste:"💧", sorprendida:"❗", pensativa:"💭", emocionada:"✨", aburrida:"💤", "cariñosa":"💕", retadora:"🔥", misteriosa:"🌙", nerviosa:"💦", orgullosa:"👑", juguetona:"🎵", seria:"", enamorada:"💗" };
+  // emoción de la IA -> nombre de la foto de Bestial
+  const FOTO = { feliz:"sonrisa", risa:"risa", coqueta:"coqueta", timida:"sonrojada", sonrojada:"sonrojada", enojada:"brazos", celosa:"celosa", triste:"triste", sorprendida:"sorprendida", pensativa:"pensativa", emocionada:"emocionada", aburrida:"aburrida", "cariñosa":"beso", retadora:"burla", misteriosa:"susurro", nerviosa:"puchero", orgullosa:"ojos_blanco", juguetona:"guino", seria:"neutral", enamorada:"labio", saludo:"saludo" };
+  // respaldo para quien solo tenga 5 caras
+  const CINCO = { feliz:"sonrisa", risa:"sonrisa", coqueta:"coqueta", timida:"sonrojada", sonrojada:"sonrojada", celosa:"celosa", enojada:"celosa", triste:"triste", aburrida:"triste", "cariñosa":"coqueta", enamorada:"coqueta", juguetona:"coqueta", emocionada:"sonrisa", orgullosa:"sonrisa", nerviosa:"sonrojada", saludo:"sonrisa" };
   function moverse(emo) {
-    const E = window.WB_EMOS; if (!E.includes(emo)) emo = E[Math.floor(Math.random() * E.length)];
+    const E = window.WB_EMOS; if (emo !== "saludo" && !E.includes(emo)) emo = E[Math.floor(Math.random() * E.length)];
     const pj = $("pj"); pj.className = ""; void pj.offsetWidth; pj.className = "emo-" + emo;
-    const ruta = `img/${actual.id}/moods/${emo}.jpg`, base = `url(img/${actual.id}.jpg)`;
-    const im = new Image(); im.onload = () => { pj.style.opacity = 0; setTimeout(() => { pj.style.backgroundImage = `url(${ruta})`; pj.style.opacity = ""; }, 250); };
-    im.onerror = () => { pj.style.backgroundImage = base; }; im.src = ruta;
+    const lista = [FOTO[emo], CINCO[emo]].filter(Boolean).map(f => `img/${actual.id}/moods/${f}.jpg`);
+    const probar = (k) => { if (k >= lista.length) { pj.style.backgroundImage = `url(img/${actual.id}.jpg)`; return; }
+      const im = new Image(); im.onload = () => { pj.style.opacity = 0; setTimeout(() => { pj.style.backgroundImage = `url(${lista[k]})`; pj.style.opacity = ""; }, 250); };
+      im.onerror = () => probar(k + 1); im.src = lista[k]; };
+    probar(0);
     const s = PART[emo]; if (!s) return;
     for (let i = 0; i < 5; i++) { const e = document.createElement("span"); e.textContent = s;
       e.style.left = (25 + Math.random() * 50) + "%"; e.style.animationDelay = (i * 0.18) + "s";
@@ -50,7 +56,8 @@
   function abrir(p) {
     actual = p;
     $("pj").style.backgroundImage = `url(img/${p.id}.jpg)`; $("escena").style.setProperty("--neon", p.colores[0]);
-    setTimeout(() => moverse("feliz"), 300); pintarAvatar($("chatAvatar"), p);
+    new Set(Object.values(FOTO)).forEach(f => { const i = new Image(); i.onerror = () => {}; i.src = `img/${p.id}/moods/${f}.jpg`; });
+    setTimeout(() => moverse("saludo"), 300); pintarAvatar($("chatAvatar"), p);
     $("chatNombre").textContent = p.nombre; $("chatTag").textContent = p.tag + " · IA";
     const d = datos(p.id);
     if (!d.msgs.length) { d.msgs.push({ role: "assistant", content: p.saludo }); guardar(p.id, d); }
